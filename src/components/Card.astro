@@ -1,63 +1,66 @@
 ---
-export interface Props {
-	title: string;
-	body: string;
-	href: string;
-}
+	export interface Props {
+		name: string;
+		birth: string;
+		class: string;
+		href: string;
+	}
 
-const { href, title, body } = Astro.props;
+	const { href, title, body } = Astro.props;
 ---
 
-<li class="link-card">
-	<a href={href}>
-		<h2>
-			{title}
-			<span>&rarr;</span>
-		</h2>
-		<p>
-			{body}
-		</p>
-	</a>
-</li>
+<div class="card-body">
+	<div class="card-content">
+		<h1>Nome do Curso</h1>
+		<img class="avatar" />
+		<span class="student-name"> Nome do aluno</span>
+	</div>
+</div>
 <style>
-	.link-card {
-		list-style: none;
+	* {
+		font-family: "Roboto", sans-serif;
+	}
+	.card-body {
 		display: flex;
-		padding: 0.25rem;
-		background-color: white;
-		background-image: none;
-		background-size: 400%;
-		border-radius: 0.6rem;
-		background-position: 100%;
-		transition: background-position 0.6s cubic-bezier(0.22, 1, 0.36, 1);
-		box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+		margin: auto;
+		width: 900px;
+		height: 500px;
+		background-color: #4c7a56;
+		-webkit-mask: radial-gradient(circle at left top,
+				transparent 100px,
+				black 101px),
+			radial-gradient(circle at right top, transparent 100px, black 101px),
+			radial-gradient(circle at left bottom, transparent 100px, black 101px),
+			radial-gradient(circle at right bottom, transparent 100px, black 101px),
+			linear-gradient(black, black);
+		-webkit-mask-composite: destination-in;
+		mask-composite: exclude;
 	}
 
-	.link-card > a {
-		width: 100%;
-		text-decoration: none;
-		line-height: 1.4;
-		padding: 1rem 1.3rem;
-		border-radius: 0.35rem;
-		color: #111;
-		background-color: white;
-		opacity: 0.8;
+	.card-content {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		width: 70%;
+		height: 90%;
+		margin: auto;
 	}
-	h2 {
-		margin: 0;
-		font-size: 1.25rem;
-		transition: color 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+
+	h1 {
+		color: #f7f7f7;
 	}
-	p {
-		margin-top: 0.5rem;
-		margin-bottom: 0;
-		color: #444;
+
+	.avatar {
+		height: clamp(100px, 10%, 40px);
+		width: clamp(100px, 10%, 40px);
+		border: 1px solid black;
+		border-radius: 100%;
+		background-color: #000;
+		margin-bottom: 1rem;
 	}
-	.link-card:is(:hover, :focus-within) {
-		background-position: 0;
-		background-image: var(--accent-gradient);
-	}
-	.link-card:is(:hover, :focus-within) h2 {
-		color: rgb(var(--accent));
+
+	.student-name {
+		font-size: clamp(2rem, 10vh, 0.5rem);
+		color: #f7f7f7;
 	}
 </style>
