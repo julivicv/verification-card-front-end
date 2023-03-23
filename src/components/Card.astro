@@ -1,25 +1,32 @@
 ---
+	import QRcode from "./QRCode"
 	export interface Props {
 		name: string;
 		birth: string;
 		class: string;
 		href: string;
+		link: string;
 	}
 
-	const { href, title, body } = Astro.props;
+	const { name, birth, class, href, link } = Astro.props;
 ---
 
 <div class="card-body">
 	<div class="card-content">
 		<h1>Nome do Curso</h1>
 		<img class="avatar" />
-		<span class="student-name"> Nome do aluno</span>
+		<span class="student-name">Nome do aluno</span>
+		<span class="birth-date">01/01/2001</span>
+	</div>
+	<div class="vertical-line">
+		<QRcode url={link} />
 	</div>
 </div>
 <style>
 	* {
 		font-family: "Roboto", sans-serif;
 	}
+
 	.card-body {
 		display: flex;
 		margin: auto;
@@ -36,6 +43,12 @@
 		mask-composite: exclude;
 	}
 
+	h1,
+	.birth-date,
+	.student-name {
+		color: #f7f7f7;
+	}
+
 	.card-content {
 		display: flex;
 		flex-direction: column;
@@ -45,9 +58,7 @@
 		margin: auto;
 	}
 
-	h1 {
-		color: #f7f7f7;
-	}
+	h1 {}
 
 	.avatar {
 		height: clamp(100px, 10%, 40px);
@@ -60,6 +71,14 @@
 
 	.student-name {
 		font-size: clamp(2rem, 10vh, 0.5rem);
-		color: #f7f7f7;
+	}
+
+	.vertical-line {
+		width: 1px;
+		height: full;
+		border-left: dashed 5px #fff;
+		position: relative;
+		right: 120px;
+		top: 0;
 	}
 </style>
